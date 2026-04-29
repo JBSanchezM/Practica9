@@ -11,9 +11,7 @@ import com.ligaprofesional.enums.Posicion;
  * @version 1.0
  */
 
-public class  Jugador {
-    private String nombreCamiseta;
-    private LocalDate fechaDeNacimiento;
+public class Jugador extends Trabajador {
     private Posicion posicion;
     private boolean traspasoSolicitado;
     private static int contadorJugadores;
@@ -27,50 +25,11 @@ public class  Jugador {
      * @param fechaDeNacimiento Fecha de nacimiento del jugador
      * @param posicion          Posición en la que juega
      */
-
-    public Jugador(String nombreCamiseta, LocalDate fechaDeNacimiento, Posicion posicion) {
-        this.nombreCamiseta = nombreCamiseta;
-        this.fechaDeNacimiento = fechaDeNacimiento;
+    public Jugador(String nombre, LocalDate fechaDeNacimiento, Equipo equipo, Posicion posicion) {
+        super(nombre, fechaDeNacimiento, equipo);
         this.posicion = posicion;
         this.traspasoSolicitado = false;
         contadorJugadores++;
-    }
-
-    /**
-     * Devuelve el nombre que aparece en la camiseta del jugador.
-     *
-     * @return nombre de la camiseta del jugador
-     */
-    public String getNombreCamiseta() {
-        return nombreCamiseta;
-    }
-
-    /**
-     * Modifica el nombre de la camiseta del jugador
-     * 
-     * @param nombreCamiseta nuevo nombre de la camiseta
-     */
-
-    public void setNombreCamiseta(String nombreCamiseta) {
-        this.nombreCamiseta = nombreCamiseta;
-    }
-
-    /**
-     * Devuelve la fecha de nacimiento del jugador.
-     *
-     * @return fecha de nacimiento del jugador
-     */
-    public LocalDate getFechaDeNacimiento() {
-        return fechaDeNacimiento;
-    }
-
-    /**
-     * Modifica la fecha de naciemiento del jugador.
-     * 
-     * @param fechaDeNacimiento nueva fecha de nacimiento
-     */
-    public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
-        this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
     /**
@@ -106,7 +65,7 @@ public class  Jugador {
      */
     public void solicitarTraspaso() {
         this.traspasoSolicitado = true;
-        System.out.println("el jugador " + nombreCamiseta + " ha solicitado el traspaso");
+        System.out.println("el jugador " + nombre + " ha solicitado el traspaso");
     }
 
     /**
@@ -115,7 +74,7 @@ public class  Jugador {
      */
     public void cancelarTraspaso() {
         this.traspasoSolicitado = false;
-        System.out.println("el jugador " + nombreCamiseta + " ha cancelado el traspaso");
+        System.out.println("el jugador " + nombre + " ha cancelado el traspaso");
     }
 
     /**
@@ -143,7 +102,7 @@ public class  Jugador {
     @Override
     public String toString() {
         return "Ficha Tecnica del Jugador:"
-                + "\n Nombre: " + nombreCamiseta
+                + "\n Nombre: " + nombre
                 + "\n Fecha de nacimiento: " + fechaDeNacimiento
                 + "\n Posicion: " + posicion
                 + "\n Traspaso solicitado: " + traspasoSolicitado + "\n";
