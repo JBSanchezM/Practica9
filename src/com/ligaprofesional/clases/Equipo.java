@@ -125,7 +125,7 @@ public class Equipo {
     public String toString() {
         return "Ficha Tecnica:"
                 + "\n Equipo: " + nombreEquipo
-                + "\n Entrenador: " + entrenador.getNombreEntrenador()
+                + "\n Entrenador: " + entrenador.getNombre()
                 + "\n Jugadores: " + jugadores.size() + "\n";
     }
 
