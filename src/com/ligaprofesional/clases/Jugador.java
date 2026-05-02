@@ -2,6 +2,7 @@ package com.ligaprofesional.clases;
 
 import java.time.LocalDate;
 
+import com.ligaprofesional.enums.EstadoTraspaso;
 import com.ligaprofesional.enums.Posicion;
 
 /**
@@ -13,7 +14,7 @@ import com.ligaprofesional.enums.Posicion;
 
 public class Jugador extends Trabajador {
     private Posicion posicion;
-    private boolean traspasoSolicitado;
+    private EstadoTraspaso estadoTraspaso;
     private static int contadorJugadores;
 
     /**
@@ -28,7 +29,7 @@ public class Jugador extends Trabajador {
     public Jugador(String nombre, LocalDate fechaDeNacimiento, Equipo equipo, Posicion posicion) {
         super(nombre, fechaDeNacimiento, equipo);
         this.posicion = posicion;
-        this.traspasoSolicitado = false;
+        this.estadoTraspaso = EstadoTraspaso.SIN_SOLICITAR;
         contadorJugadores++;
     }
 
@@ -55,8 +56,8 @@ public class Jugador extends Trabajador {
      * 
      * @return true si ha solicitado traspaso, false en caso contrario
      */
-    public boolean isTraspasoSolicitado() {
-        return traspasoSolicitado;
+    public EstadoTraspaso getEstadoTraspaso() {
+        return estadoTraspaso;
     }
 
     /**
@@ -64,7 +65,7 @@ public class Jugador extends Trabajador {
      * Cambia traspaso solicitado como true
      */
     public void solicitarTraspaso() {
-        this.traspasoSolicitado = true;
+        this.estadoTraspaso = EstadoTraspaso.SOLICITADO;
         System.out.println("el jugador " + nombre + " ha solicitado el traspaso");
     }
 
@@ -73,7 +74,7 @@ public class Jugador extends Trabajador {
      * Cambia traspaso solicitado como false
      */
     public void cancelarTraspaso() {
-        this.traspasoSolicitado = false;
+        this.estadoTraspaso = EstadoTraspaso.SIN_SOLICITAR;
         System.out.println("el jugador " + nombre + " ha cancelado el traspaso");
     }
 
@@ -82,7 +83,7 @@ public class Jugador extends Trabajador {
      * reseteando su estado de solicitud.
      */
     public void finalizarTraspaso() {
-        this.traspasoSolicitado = false;
+        this.estadoTraspaso = EstadoTraspaso.SIN_SOLICITAR;
     }
 
     /**
@@ -105,7 +106,7 @@ public class Jugador extends Trabajador {
                 + "\n Nombre: " + nombre
                 + "\n Fecha de nacimiento: " + fechaDeNacimiento
                 + "\n Posicion: " + posicion
-                + "\n Traspaso solicitado: " + traspasoSolicitado + "\n";
+                + "\n Estado Traspaso: " + estadoTraspaso + "\n";
     }
 
 }
