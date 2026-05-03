@@ -2,7 +2,6 @@ package com.ligaprofesional.clases;
 
 import java.time.LocalDate;
 
-import com.ligaprofesional.enums.EstadoTraspaso;
 
 public abstract class Trabajador {
     protected String nombre;
