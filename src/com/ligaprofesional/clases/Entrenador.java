@@ -2,6 +2,7 @@ package com.ligaprofesional.clases;
 
 import java.time.LocalDate;
 
+import com.ligaprofesional.enums.EstadoTraspaso;
 import com.ligaprofesional.enums.Formacion;
 import com.ligaprofesional.interfaces.GestorTraspasos;
 
@@ -11,7 +12,7 @@ import com.ligaprofesional.interfaces.GestorTraspasos;
  * @author Jonathan Sanchez
  * @version 1.0
  */
-public class Entrenador extends Trabajador implements GestorTraspasos{
+public class Entrenador extends Trabajador implements GestorTraspasos {
 
     private Formacion formacionPreferida;
     private static int contadorEntrenadores;
@@ -57,13 +58,24 @@ public class Entrenador extends Trabajador implements GestorTraspasos{
     }
 
     @Override
-    public void aprobarTraspaso (Jugador j) {
+    public void aprobarTraspaso(Jugador j) {
+        if (mismoEquipo(j) && (j.getEstadoTraspaso() == EstadoTraspaso.SOLICITADO)) {
+            j.setEstadoTraspaso(EstadoTraspaso.APROBADO_POR_ENTRENADOR);
+            System.out.println("Traspaso aprobado por el entrenador!");
+        } else {
+            System.out.println("No se puede aprobar el traspaso");
+        }
 
     }
 
     @Override
-    public void rechazarTraspaso (Jugador j) {
-
+    public void rechazarTraspaso(Jugador j) {
+        if (mismoEquipo(j) && (j.getEstadoTraspaso() == EstadoTraspaso.SOLICITADO)) {
+            j.setEstadoTraspaso(EstadoTraspaso.RECHAZADO);
+            System.out.println("Traspaso rechazado por el entrenador!");
+        } else {
+            System.out.println("No se puede rechazar el traspaso");
+        }
     }
 
     /**

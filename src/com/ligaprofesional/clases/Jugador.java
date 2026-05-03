@@ -60,13 +60,22 @@ public class Jugador extends Trabajador {
         return estadoTraspaso;
     }
 
+    public void setEstadoTraspaso(EstadoTraspaso estadoTraspaso) {
+        this.estadoTraspaso = estadoTraspaso;
+    }
+
     /**
      * Indica que el jugador ha solicitado un traspaso
      * Cambia traspaso solicitado como true
      */
     public void solicitarTraspaso() {
-        this.estadoTraspaso = EstadoTraspaso.SOLICITADO;
-        System.out.println("el jugador " + nombre + " ha solicitado el traspaso");
+        if (estadoTraspaso == EstadoTraspaso.SIN_SOLICITAR) {
+            this.estadoTraspaso = EstadoTraspaso.SOLICITADO;
+            System.out.println("el jugador " + nombre + " ha solicitado el traspaso");
+        } else {
+            System.out.println("No se puede solicitar el traspaso");
+        }
+
     }
 
     /**
@@ -74,8 +83,13 @@ public class Jugador extends Trabajador {
      * Cambia traspaso solicitado como false
      */
     public void cancelarTraspaso() {
-        this.estadoTraspaso = EstadoTraspaso.SIN_SOLICITAR;
-        System.out.println("el jugador " + nombre + " ha cancelado el traspaso");
+        if (estadoTraspaso == EstadoTraspaso.SOLICITADO) {
+
+            this.estadoTraspaso = EstadoTraspaso.SIN_SOLICITAR;
+            System.out.println("el jugador " + nombre + " ha cancelado el traspaso");
+        } else {
+            System.out.println("No se puede cancelar el traspaso");
+        }
     }
 
     /**

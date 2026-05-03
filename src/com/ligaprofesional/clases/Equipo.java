@@ -2,6 +2,8 @@ package com.ligaprofesional.clases;
 
 import java.util.ArrayList;
 
+import com.ligaprofesional.enums.EstadoTraspaso;
+
 /**
  * Representa un Equipo de la liga profesional.
  * 
@@ -95,9 +97,10 @@ public class Equipo {
      */
 
     public void transferirJugador(Jugador jug, Equipo eq) {
-        if (jugadores.contains(jug) == true && jug.getEstadoTraspaso()) {
+        if (jugadores.contains(jug) && jug.getEstadoTraspaso() == EstadoTraspaso.APROBADO_POR_PRESIDENTE) {
             jugadores.remove(jug);
             eq.getJugadores().add(jug);
+            jug.setEquipo(eq);
             jug.finalizarTraspaso();
             System.out.println("Transferencia realizada con exito");
         } else
