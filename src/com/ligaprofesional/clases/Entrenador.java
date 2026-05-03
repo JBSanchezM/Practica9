@@ -3,6 +3,7 @@ package com.ligaprofesional.clases;
 import java.time.LocalDate;
 
 import com.ligaprofesional.enums.Formacion;
+import com.ligaprofesional.interfaces.GestorTraspasos;
 
 /**
  * Representa un Entrenador de la liga profesional.
@@ -10,7 +11,7 @@ import com.ligaprofesional.enums.Formacion;
  * @author Jonathan Sanchez
  * @version 1.0
  */
-public class Entrenador extends Trabajador {
+public class Entrenador extends Trabajador implements GestorTraspasos{
 
     private Formacion formacionPreferida;
     private static int contadorEntrenadores;
@@ -53,6 +54,16 @@ public class Entrenador extends Trabajador {
      */
     public static int getContadorEntrenadores() {
         return contadorEntrenadores;
+    }
+
+    @Override
+    public void aprobarTraspaso (Jugador j) {
+
+    }
+
+    @Override
+    public void rechazarTraspaso (Jugador j) {
+
     }
 
     /**

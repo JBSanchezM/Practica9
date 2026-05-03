@@ -95,7 +95,7 @@ public class Equipo {
      */
 
     public void transferirJugador(Jugador jug, Equipo eq) {
-        if (jugadores.contains(jug) == true && jug.isTraspasoSolicitado()) {
+        if (jugadores.contains(jug) == true && jug.getEstadoTraspaso()) {
             jugadores.remove(jug);
             eq.getJugadores().add(jug);
             jug.finalizarTraspaso();
