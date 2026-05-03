@@ -1,6 +1,9 @@
 package com.ligaprofesional.clases;
 
+import java.time.LocalDate;
+
 import com.ligaprofesional.enums.Formacion;
+import com.ligaprofesional.interfaces.GestorTraspasos;
 
 /**
  * Representa un Entrenador de la liga profesional.
@@ -8,8 +11,8 @@ import com.ligaprofesional.enums.Formacion;
  * @author Jonathan Sanchez
  * @version 1.0
  */
-public class Entrenador {
-    private String nombreEntrenador;
+public class Entrenador extends Trabajador implements GestorTraspasos{
+
     private Formacion formacionPreferida;
     private static int contadorEntrenadores;
 
@@ -20,20 +23,10 @@ public class Entrenador {
      * @param nombreEntrenador   Nombre del entrenador
      * @param formacionPreferida Formacion preferida del entrenador
      */
-    public Entrenador(String nombreEntrenador, Formacion formacionPreferida) {
-        this.nombreEntrenador = nombreEntrenador;
+    public Entrenador(String nombre, LocalDate fechaDeNacimiento, Equipo equipo, Formacion formacionPreferida) {
+        super(nombre, fechaDeNacimiento, equipo);
         this.formacionPreferida = formacionPreferida;
         contadorEntrenadores++;
-    }
-
-    /**
-     * Devuelve el nombre del entrenador
-     * 
-     * @return nombre del entrenador
-     */
-
-    public String getNombreEntrenador() {
-        return nombreEntrenador;
     }
 
     /**
@@ -63,6 +56,16 @@ public class Entrenador {
         return contadorEntrenadores;
     }
 
+    @Override
+    public void aprobarTraspaso (Jugador j) {
+
+    }
+
+    @Override
+    public void rechazarTraspaso (Jugador j) {
+
+    }
+
     /**
      * Devuelve una representación en textual del entrenador con toda su
      * informacion.
@@ -72,7 +75,7 @@ public class Entrenador {
     @Override
     public String toString() {
         return "Ficha Tecnica del Entrenador"
-                + "\nNombre: " + nombreEntrenador
+                + "\nNombre: " + nombre
                 + "\nFormacion Preferida: " + formacionPreferida + "\n";
     }
 

@@ -2,6 +2,7 @@ package com.ligaprofesional.clases;
 
 import java.time.LocalDate;
 
+import com.ligaprofesional.enums.EstadoTraspaso;
 import com.ligaprofesional.enums.Posicion;
 
 /**
@@ -11,11 +12,9 @@ import com.ligaprofesional.enums.Posicion;
  * @version 1.0
  */
 
-public class  Jugador {
-    private String nombreCamiseta;
-    private LocalDate fechaDeNacimiento;
+public class Jugador extends Trabajador {
     private Posicion posicion;
-    private boolean traspasoSolicitado;
+    private EstadoTraspaso estadoTraspaso;
     private static int contadorJugadores;
 
     /**
@@ -27,50 +26,11 @@ public class  Jugador {
      * @param fechaDeNacimiento Fecha de nacimiento del jugador
      * @param posicion          Posición en la que juega
      */
-
-    public Jugador(String nombreCamiseta, LocalDate fechaDeNacimiento, Posicion posicion) {
-        this.nombreCamiseta = nombreCamiseta;
-        this.fechaDeNacimiento = fechaDeNacimiento;
+    public Jugador(String nombre, LocalDate fechaDeNacimiento, Equipo equipo, Posicion posicion) {
+        super(nombre, fechaDeNacimiento, equipo);
         this.posicion = posicion;
-        this.traspasoSolicitado = false;
+        this.estadoTraspaso = EstadoTraspaso.SIN_SOLICITAR;
         contadorJugadores++;
-    }
-
-    /**
-     * Devuelve el nombre que aparece en la camiseta del jugador.
-     *
-     * @return nombre de la camiseta del jugador
-     */
-    public String getNombreCamiseta() {
-        return nombreCamiseta;
-    }
-
-    /**
-     * Modifica el nombre de la camiseta del jugador
-     * 
-     * @param nombreCamiseta nuevo nombre de la camiseta
-     */
-
-    public void setNombreCamiseta(String nombreCamiseta) {
-        this.nombreCamiseta = nombreCamiseta;
-    }
-
-    /**
-     * Devuelve la fecha de nacimiento del jugador.
-     *
-     * @return fecha de nacimiento del jugador
-     */
-    public LocalDate getFechaDeNacimiento() {
-        return fechaDeNacimiento;
-    }
-
-    /**
-     * Modifica la fecha de naciemiento del jugador.
-     * 
-     * @param fechaDeNacimiento nueva fecha de nacimiento
-     */
-    public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
-        this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
     /**
@@ -96,8 +56,8 @@ public class  Jugador {
      * 
      * @return true si ha solicitado traspaso, false en caso contrario
      */
-    public boolean isTraspasoSolicitado() {
-        return traspasoSolicitado;
+    public EstadoTraspaso getEstadoTraspaso() {
+        return estadoTraspaso;
     }
 
     /**
@@ -105,8 +65,8 @@ public class  Jugador {
      * Cambia traspaso solicitado como true
      */
     public void solicitarTraspaso() {
-        this.traspasoSolicitado = true;
-        System.out.println("el jugador " + nombreCamiseta + " ha solicitado el traspaso");
+        this.estadoTraspaso = EstadoTraspaso.SOLICITADO;
+        System.out.println("el jugador " + nombre + " ha solicitado el traspaso");
     }
 
     /**
@@ -114,8 +74,8 @@ public class  Jugador {
      * Cambia traspaso solicitado como false
      */
     public void cancelarTraspaso() {
-        this.traspasoSolicitado = false;
-        System.out.println("el jugador " + nombreCamiseta + " ha cancelado el traspaso");
+        this.estadoTraspaso = EstadoTraspaso.SIN_SOLICITAR;
+        System.out.println("el jugador " + nombre + " ha cancelado el traspaso");
     }
 
     /**
@@ -123,7 +83,7 @@ public class  Jugador {
      * reseteando su estado de solicitud.
      */
     public void finalizarTraspaso() {
-        this.traspasoSolicitado = false;
+        this.estadoTraspaso = EstadoTraspaso.SIN_SOLICITAR;
     }
 
     /**
@@ -143,10 +103,10 @@ public class  Jugador {
     @Override
     public String toString() {
         return "Ficha Tecnica del Jugador:"
-                + "\n Nombre: " + nombreCamiseta
+                + "\n Nombre: " + nombre
                 + "\n Fecha de nacimiento: " + fechaDeNacimiento
                 + "\n Posicion: " + posicion
-                + "\n Traspaso solicitado: " + traspasoSolicitado + "\n";
+                + "\n Estado Traspaso: " + estadoTraspaso + "\n";
     }
 
 }
